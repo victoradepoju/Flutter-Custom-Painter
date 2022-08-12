@@ -99,6 +99,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                 Text(
                                   textHeader[index],
                                   style: TextStyle(
+                                    fontWeight: FontWeight.bold,
                                     color: isSelect == index
                                         ? Colors.black
                                         : Colors.grey,
@@ -121,8 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ),
             const SizedBox(height: 20),
-            SizedBox(
-              height: 100,
+            Expanded(
               child: ListView(
                 physics: const NeverScrollableScrollPhysics(
                     parent: NeverScrollableScrollPhysics()),
@@ -131,20 +131,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 children: [
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    color: Colors.red,
+                    color: Colors.black,
                     child: const Center(
                       child: Text(
-                        '1. This is the first list item',
+                        'Badge is selected',
                         style: TextStyle(fontSize: 25, color: Colors.white),
                       ),
                     ),
                   ),
                   Container(
                     width: MediaQuery.of(context).size.width,
-                    color: Colors.blue,
+                    color: const Color.fromRGBO(88, 190, 230, 1),
                     child: const Center(
                       child: Text(
-                        '2. This is the second list item',
+                        'Stats is selected',
                         style: TextStyle(fontSize: 25, color: Colors.white),
                       ),
                     ),
