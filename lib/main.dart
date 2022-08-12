@@ -24,13 +24,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -61,17 +61,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 50,
-              width: MediaQuery.of(context).size.width,
-              child: ListView.separated(
-                  separatorBuilder: ((context, index) =>
-                      const SizedBox(width: 100)),
-                  scrollDirection: Axis.horizontal,
-                  itemCount: textHeader.length,
-                  itemBuilder: (context, index) {
-                    return Text(textHeader[index]);
-                  }),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Center(
+                child: SizedBox(
+                  height: 50,
+                  child: ListView.separated(
+                      shrinkWrap: true,
+                      separatorBuilder: ((context, index) =>
+                          const SizedBox(width: 150)),
+                      scrollDirection: Axis.horizontal,
+                      itemCount: textHeader.length,
+                      itemBuilder: (context, index) {
+                        return Center(
+                          child: Text(textHeader[index]),
+                        );
+                      }),
+                ),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
