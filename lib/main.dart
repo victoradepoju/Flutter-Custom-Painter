@@ -74,7 +74,24 @@ class _MyHomePageState extends State<MyHomePage> {
                       itemCount: textHeader.length,
                       itemBuilder: (context, index) {
                         return Center(
-                          child: Text(textHeader[index]),
+                          child: GestureDetector(
+                            onTap: () {
+                              if (index == 0) {
+                                controller.animateTo(
+                                  controller.position.minScrollExtent,
+                                  duration: const Duration(seconds: 1),
+                                  curve: Curves.fastOutSlowIn,
+                                );
+                              } else {
+                                controller.animateTo(
+                                  controller.position.maxScrollExtent,
+                                  duration: const Duration(seconds: 1),
+                                  curve: Curves.fastOutSlowIn,
+                                );
+                              }
+                            },
+                            child: Text(textHeader[index]),
+                          ),
                         );
                       }),
                 ),
