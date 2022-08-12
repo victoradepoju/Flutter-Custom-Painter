@@ -37,6 +37,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int isSelect = 0;
   final controller = ScrollController();
 
   @override
@@ -76,6 +77,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         return Center(
                           child: GestureDetector(
                             onTap: () {
+                              setState(() {
+                                isSelect = index;
+                              });
                               if (index == 0) {
                                 controller.animateTo(
                                   controller.position.minScrollExtent,
@@ -90,67 +94,30 @@ class _MyHomePageState extends State<MyHomePage> {
                                 );
                               }
                             },
-                            child: Text(textHeader[index]),
+                            child: Column(
+                              children: [
+                                Text(
+                                  textHeader[index],
+                                  style: TextStyle(
+                                    color: isSelect == index
+                                        ? Colors.black
+                                        : Colors.grey,
+                                  ),
+                                ),
+                                const SizedBox(height: 2),
+                                Container(
+                                  height: 2,
+                                  width: 25,
+                                  color: isSelect == index
+                                      ? Colors.black
+                                      : Colors.transparent,
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       }),
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        TextButton(
-                          child: const Text(
-                            'Badge',
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                          onPressed: () => controller.animateTo(
-                            controller.position.minScrollExtent,
-                            duration: const Duration(seconds: 1),
-                            curve: Curves.fastOutSlowIn,
-                          ),
-                        ),
-                        Container(
-                          height: 2,
-                          width: 10,
-                          color: Colors.black,
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    child: Column(
-                      children: [
-                        TextButton(
-                          child: const Text(
-                            'Stats',
-                            style: TextStyle(
-                              color: Colors.grey,
-                            ),
-                          ),
-                          onPressed: () => controller.animateTo(
-                              controller.position.maxScrollExtent,
-                              duration: const Duration(seconds: 1),
-                              curve: Curves.fastOutSlowIn),
-                        ),
-                        Container(
-                          height: 2,
-                          width: 10,
-                          color: Colors.black,
-                        )
-                      ],
-                    ),
-                  ),
-                ],
               ),
             ),
             const SizedBox(height: 20),
